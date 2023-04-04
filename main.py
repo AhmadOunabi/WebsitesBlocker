@@ -7,22 +7,22 @@ from PyQt5.uic import loadUi
 from sys import argv
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self):                           #Initializing the main window
         super().__init__()
         loadUi('GUI.ui',self)
         self.Handel_buttons()
         self.redirect="127.0.0.1"
         self.host="C:\Windows\System32\drivers\etc\hosts"
         self.websites = []
-    def Handel_buttons(self):
+    def Handel_buttons(self):                     # Initialize the buttons and connect them with the functions
         self.pushButton.clicked.connect(self.add)
         self.pushButton_2.clicked.connect(self.start)
-    def add(self):
+    def add(self):                                # define Function for Add Button
         self.blockedWebsite= 'www.' + (self.lineEdit.text())
         self.websites.append(self.blockedWebsite)
         self.lineEdit.clear()
         print(self.websites)
-    def start(self):
+    def start(self):                              # define Function for Start Button
             self.FROM=self.timeEdit.text()
             self.From_std=int(self.FROM[0:2])
             self.From_min=int(self.FROM[3:])
@@ -48,6 +48,7 @@ class MainWindow(QMainWindow):
                             self.content.remove(f'{self.redirect} {self.website} \n')
                             self.file.seek(0)
                             self.file.writelines(self.content)
+            time.sleep(5)
 
 
 
